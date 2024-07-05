@@ -1,3 +1,6 @@
+let computerScore = 0;
+let humanScore = 0;
+
 function getComputerChoice() {
     const randomNum = Math.floor(Math.random() * 3);
     if (randomNum === 0) {
@@ -28,3 +31,4 @@ function getHumanChoice() {
 }
 
 console.log(getHumanChoice());
+
