@@ -1,34 +1,58 @@
-let computerScore = 0;
 let humanScore = 0;
+let computerScore = 0;
+
+function getHumanChoice() {
+
+    let Choice = prompt(`Sir please write one of these: Rock, Paper or Scissors`).toLowerCase();
+    if (Choice === 'rock' || Choice === 'paper' || Choice === 'scissors') {
+        return Choice;
+    }
+    else {
+        console.log('Invalid choice. Please choose Rock, Paper, or Scissors.');
+        return getHumanChoice();
+    }
+}
 
 function getComputerChoice() {
     const randomNum = Math.floor(Math.random() * 3);
     if (randomNum === 0) {
-        return 'Rock';
+        return 'rock';
     }
-    if (randomNum === 1) {
-        return 'Paper';
+    else if (randomNum === 1) {
+        return 'paper';
     }
-    if (randomNum === 2) {
-        return 'Scissors';
+    else {
+        return 'scissors';
     }
 
 }
-console.log(getComputerChoice());
 
-function getHumanChoice() {
+function playRound(humanChoice, computerChoice) {
+    console.log(humanChoice);
+    console.log(computerChoice);
 
-    const Choice = prompt(`Sir please write one of these: Rock, Paper or Scissors`);
-    if (Choice === 'Rock') {
-        return 'Rock';
+    if (humanChoice === computerChoice) {
+        console.log('Its a Tie');
     }
-    if (Choice === 'Paper') {
-        return 'Paper';
+
+    else if (humanChoice === 'rock' && computerChoice === 'scissors' ||
+        humanChoice === 'paper' && computerChoice === 'rock' ||
+        humanChoice === 'scissors' && computerChoice === 'paper'
+
+    ) {
+        humanScore++;
+        console.log(`You win! ${humanChoice.charAt(0).toUpperCase() + humanChoice.slice(1)} beats ${computerChoice}`);
     }
-    if (Choice === 'Scissors') {
-        return 'Scissors';
+    else {
+        computerScore++;
+        console.log(`You lose! ${computerChoice.charAt(0).toUpperCase() + computerChoice.slice(1)} beats ${humanChoice}`);
     }
+    console.log(`Score: Human - ${humanScore} and Computer - ${computerScore}`);
 }
 
-console.log(getHumanChoice());
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+playRound(humanSelection, computerSelection);
+
+
 
